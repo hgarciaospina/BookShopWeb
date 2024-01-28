@@ -1,0 +1,19 @@
+.center {
+    text-align: center;
+}
+
+.image-principal {
+    background: url('https://1.bp.blogspot.com/-QFC6upWnP9E/VpTcvf2CDYI/AAAAAAAAAQc/m8b52yHhliA/s1600/20120611060852424.jpg') no-repeat center center fixed; /* Cambia 'tu_imagen.jpg' por la ruta de tu imagen */
+    background-size: cover;
+    opacity: 0.5; 
+    height: 100vh; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #320db9;
+}
+
+h1 {
+    text-align: center;
+    margin: 0;
+}

@@ -1,0 +1,29 @@
+table {
+    width: 100%;
+}
+
+.left {
+    padding: 10px;
+    text-align: end;
+} 
+
+.color-button-edit {
+    background-color: #ffffff;  /* Cambia el color de fondo*/
+    color:  #ff7b00;/* Cambial el color de la imagen */
+    margin-right: 5px;
+}
+.color-button-delete {
+        color: #ff0000; /* Cambia el color de la imagen */
+        background-color: #ffffff; /* Cambia el color de fondo*/
+        margin-right: 5px;
+}
+
+.color-button-detail {
+    color: hsl(224, 100%, 50%); /* Cambia el color de la imagen */
+        background-color: #ffffff; /* Cambia el color de fondo*/
+        margin-right: 5px;
+}
+
+.options {
+    text-align: center;
+}

@@ -1,0 +1,15 @@
+<div class="container">
+    <mat-card>
+        <mat-card-header>
+          <mat-card-title>View Category</mat-card-title>
+        </mat-card-header>
+        <mat-divider></mat-divider>
+        <mat-card-content>
+            <p><b>Id</b>: {{ id }}</p>
+            <p><b>Name</b>: {{ name }} </p>
+          </mat-card-content>
+          <mat-card-actions align="end">
+            <button mat-raised-button color="accent" (click)="closeDialog()">Close</button>
+          </mat-card-actions>
+    </mat-card>
+</div>
