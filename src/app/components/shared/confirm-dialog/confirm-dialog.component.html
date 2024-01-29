@@ -1,1 +1,16 @@
-<p>confirm-dialog works!</p>
+<div class="container">
+    <mat-card>
+        <mat-card-header>
+          <mat-card-title>{{ data.title }}</mat-card-title>
+        </mat-card-header>
+        <mat-divider></mat-divider>
+        <mat-card-content>
+          <p>{{ data.message }}</p> 
+        </mat-card-content>
+          <mat-card-actions align="end">
+            <button mat-raised-button color="primary" (click)="onConfirmation('Yes')"  class="button-yes">Yes</button>
+            <button mat-raised-button color="accent" (click)="onConfirmation('No')">No</button>
+          </mat-card-actions>
+    </mat-card>
+</div>
+

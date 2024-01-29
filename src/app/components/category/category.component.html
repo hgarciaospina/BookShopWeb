@@ -28,10 +28,10 @@
              <ng-container matColumnDef="options">
                 <th mat-header-cell *matHeaderCellDef class="options"> Options </th>
                 <td mat-cell *matCellDef="let category" class="options">
-                    <button mat-icon-button  (click)="editElement(category)" class="color-button-edit">
+                    <button mat-icon-button (click)="editElement(category)" class="color-button-edit">
                       <mat-icon>edit</mat-icon>
                   </button>  
-                  <button mat-icon-button class="color-button-delete">
+                  <button mat-icon-button (click)="deleteElement(category.id) "class="color-button-delete">
                     <mat-icon>delete</mat-icon>
                   </button>
                   <button mat-icon-button (click)="viewElement(category.id)" class="color-button-detail">

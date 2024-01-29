@@ -24,6 +24,10 @@ export class BookshopService {
       name: category.name
     });
   }
+
+  deleteCategory(id: number){
+    return this.http.delete<any>(`${this.BASE_URL}/api/v1/category/${id}`);
+  }
   
   getAllAuthors() {
     return this.http.get<Author[]>(`${this.BASE_URL}/api/v1/author`);

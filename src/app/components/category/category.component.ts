@@ -12,6 +12,7 @@ import { BookshopService } from '../../bookshop.service';
 import { Category } from '../../bookshop';
 import { ViewCategoryComponent } from './view-category/view-category.component';
 import { EditCategoryComponent } from './edit-category/edit-category.component';
+import { ConfirmDialogComponent } from '../shared/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-category',
@@ -33,20 +34,25 @@ export class CategoryComponent {
 
   constructor(
     private bookshopService: BookshopService, 
-    private dialog: MatDialog
+    private dialog: MatDialog) {
+    this.loadDataSource();
+    }    
+
+    private loadDataSource(){
+      this.bookshopService.getAllCategories()
+        .subscribe({
+          next: (categories) => {
+            this.dataSource = categories.map(cat => <CategoryData>{
+              id: cat.id,
+              name: cat.name
+            });
+         },
+         error: (err) => {
+           console.log(err);
+         }
+        })      
+    }
     
-    ) {
-    this.bookshopService.getAllCategories()
-     .subscribe(
-      (categories) => {
-         this.dataSource = categories.map(cat => <CategoryData> {
-          id: cat.id,
-          name: cat.name
-         });
-        }
-     );
-  }
-  
   getCategoryById(id: number): void {
     this.bookshopService.getCategoryById(id).subscribe(
       (category: Category) => {
@@ -78,10 +84,33 @@ export class CategoryComponent {
       }
     });
    }
-  
-  }
 
-  
+   deleteElement(id: number) {
+    const ref = this.dialog.open(ConfirmDialogComponent, {
+      data: {
+        title: 'Delete category',
+        message: 'Are you sure ti delete this category'
+      }
+    });
+
+    ref.afterClosed()
+      .subscribe((data) => {
+        if(data === 'Yes'){
+          this.bookshopService.deleteCategory(id)
+          .subscribe({
+            next: (data) => {
+              this.loadDataSource();
+            },
+            error: (err) => {
+              console.log(err);
+            }
+          });
+        }
+      });
+   }
+ 
+  }
+ 
 export interface CategoryData {
   id: number;
   name: string;
