@@ -6,7 +6,6 @@ import { Author, Category, Book } from './bookshop';
   providedIn: 'root'
 })
 export class BookshopService {
-
   private BASE_URL = 'http://localhost:8091';
 
   constructor(private http: HttpClient) { }
@@ -17,6 +16,13 @@ export class BookshopService {
 
   getCategoryById(id: number) {
     return this.http.get<Category>(`${this.BASE_URL}/api/v1/category/${id}`);
+  }
+
+  updateCategory(category: Category) {
+    return this.http.put<Category>(`${this.BASE_URL}/api/v1/category/${category.id}`, 
+    {
+      name: category.name
+    });
   }
   
   getAllAuthors() {

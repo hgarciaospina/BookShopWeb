@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component, Inject } from '@angular/core';
 
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog'
@@ -12,6 +13,7 @@ import { MatButtonModule } from '@angular/material/button';
   selector: 'app-view-category',
   standalone: true,
   imports: [
+    CommonModule,
     MatDividerModule,
     MatCardModule,
     MatButtonModule,

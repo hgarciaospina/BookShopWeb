@@ -11,6 +11,7 @@ import { BookshopService } from '../../bookshop.service';
 
 import { Category } from '../../bookshop';
 import { ViewCategoryComponent } from './view-category/view-category.component';
+import { EditCategoryComponent } from './edit-category/edit-category.component';
 
 @Component({
   selector: 'app-category',
@@ -60,13 +61,27 @@ export class CategoryComponent {
   }
 
   viewElement(id: number){
-    this.dialog.open(ViewCategoryComponent, {
+    let ref = this.dialog.open(ViewCategoryComponent, {
     data: { id }
     });
    }
+
+   editElement(category: CategoryData) {
+    const ref = this.dialog.open(EditCategoryComponent, {
+      data: category
+    })
+    ref.afterClosed()
+    .subscribe((data) => {
+      if(data) {
+        const index = this.dataSource.findIndex(e => e.id == data.id);
+        this.dataSource[index].name = data.name; 
+      }
+    });
+   }
+  
   }
 
-
+  
 export interface CategoryData {
   id: number;
   name: string;
