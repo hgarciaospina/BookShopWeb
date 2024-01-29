@@ -15,6 +15,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Category } from '../../../bookshop';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-edit-category',
@@ -44,7 +45,8 @@ export class EditCategoryComponent {
   constructor(
     private bookshopService: BookshopService,
     public dialogRef: MatDialogRef<EditCategoryComponent>,
-    @Inject(MAT_DIALOG_DATA) private data: CategoryData) {
+    @Inject(MAT_DIALOG_DATA) private data: CategoryData,
+    private toastr: ToastrService) {
     
       this.categoryForm.get('id')?.setValue(this.data.id + '');
       this.categoryForm.get('name')?.setValue(this.data.name);
@@ -69,16 +71,15 @@ export class EditCategoryComponent {
         name: this.categoryForm.value!.name
       }).subscribe({
         next: (data) => {
+          this.toastr.warning('Category edited!!','Editing category');
           this.dialogRef.close(data);
         },
         error: (err) => { 
-        console.log(err);
-          alert('Error: ' + err.error.message);
+          this.toastr.error('Error editing category', 'Category cant\'t be edited ' + err.error.message);
         }
       });
     }
   }
-  
   close() {
     this.dialogRef.close();
   }

@@ -15,6 +15,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Category } from '../../../bookshop';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-new-category',
@@ -41,6 +42,7 @@ export class NewCategoryComponent {
   
   constructor(
     private bookshopService: BookshopService,
+    private toastr: ToastrService,
     public dialogRef: MatDialogRef<NewCategoryComponent>) {
     
   }
@@ -63,11 +65,11 @@ export class NewCategoryComponent {
         name: this.categoryForm.value!.name
       }).subscribe({
         next: (data) => {
+          this.toastr.success('Category created!!','Creating category');
           this.dialogRef.close(data);
         },
         error: (err) => { 
-        console.log(err);
-          alert('Error: ' + err.error.message);
+          this.toastr.error('Error creating category', 'Category cant\'t be created ' + err.error.message);
         }
       });
     }

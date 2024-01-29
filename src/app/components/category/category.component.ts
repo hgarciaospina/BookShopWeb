@@ -14,6 +14,7 @@ import { ViewCategoryComponent } from './view-category/view-category.component';
 import { EditCategoryComponent } from './edit-category/edit-category.component';
 import { ConfirmDialogComponent } from '../shared/confirm-dialog/confirm-dialog.component';
 import { NewCategoryComponent } from './new-category/new-category.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-category',
@@ -35,7 +36,8 @@ export class CategoryComponent {
 
   constructor(
     private bookshopService: BookshopService, 
-    private dialog: MatDialog) {
+    private dialog: MatDialog,
+    private toastr: ToastrService) {
     this.loadDataSource();
     }    
 
@@ -47,9 +49,10 @@ export class CategoryComponent {
               id: cat.id,
               name: cat.name
             });
+           this.toastr.success('Information loaded', 'Loading categories'); 
          },
          error: (err) => {
-           console.log(err);
+           this.toastr.error(err.error.message, 'Loading categories');
          }
         })      
     }
@@ -112,9 +115,10 @@ export class CategoryComponent {
           .subscribe({
             next: (data) => {
               this.loadDataSource();
+              this.toastr.warning('Deleting category','Category deleted!!')
             },
             error: (err) => {
-              console.log(err);
+              this.toastr.error('Error deleting category', 'Category cant\'t be deleted');
             }
           });
         }
