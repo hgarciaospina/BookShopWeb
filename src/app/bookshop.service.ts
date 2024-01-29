@@ -18,6 +18,15 @@ export class BookshopService {
     return this.http.get<Category>(`${this.BASE_URL}/api/v1/category/${id}`);
   }
 
+  createCategory(category: Category) {
+    return this.http.post<Category>(`${this.BASE_URL}/api/v1/category`, 
+    {
+      name: category.name
+    });
+  }
+
+
+
   updateCategory(category: Category) {
     return this.http.put<Category>(`${this.BASE_URL}/api/v1/category/${category.id}`, 
     {

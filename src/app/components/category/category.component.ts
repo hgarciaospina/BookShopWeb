@@ -13,6 +13,7 @@ import { Category } from '../../bookshop';
 import { ViewCategoryComponent } from './view-category/view-category.component';
 import { EditCategoryComponent } from './edit-category/edit-category.component';
 import { ConfirmDialogComponent } from '../shared/confirm-dialog/confirm-dialog.component';
+import { NewCategoryComponent } from './new-category/new-category.component';
 
 @Component({
   selector: 'app-category',
@@ -67,10 +68,21 @@ export class CategoryComponent {
   }
 
   viewElement(id: number){
-    let ref = this.dialog.open(ViewCategoryComponent, {
+    const ref = this.dialog.open(ViewCategoryComponent, {
     data: { id }
     });
-   }
+  }
+  
+  newCategory(){
+    const ref = this.dialog.open(NewCategoryComponent);
+    ref.afterClosed()
+    .subscribe((data) => {
+      if(data) {
+        this.loadDataSource(); 
+      }
+    });
+  }
+
 
    editElement(category: CategoryData) {
     const ref = this.dialog.open(EditCategoryComponent, {

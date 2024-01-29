@@ -1,0 +1,23 @@
+<div class="container">
+    <mat-card>
+        <mat-card-header>
+          <mat-card-title>New Category</mat-card-title>
+        </mat-card-header>
+        <mat-divider></mat-divider>
+        <mat-card-content>
+            <form [formGroup]="categoryForm">
+              <mat-form-field>
+                <mat-label>Name</mat-label>
+                <input matInput formControlName="name">
+                @if(categoryForm.get('name')?.invalid) {
+                  <mat-error>{{ getErrorMessage('name') }}</mat-error>
+                }
+              </mat-form-field>
+            </form>
+          </mat-card-content>
+          <mat-card-actions align="end">
+            <button mat-raised-button color="primary" (click)="save()">Save</button>
+            <button mat-raised-button color="accent" (click)="close()">Close</button>
+          </mat-card-actions>
+    </mat-card>
+</div>
