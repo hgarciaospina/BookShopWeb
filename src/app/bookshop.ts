@@ -1,3 +1,11 @@
+/* 
+  Note: In the frontend there is no need to name  the  interfaces
+        with the name of the backend data since the frontend does 
+        not manage data, in the backend the data is used and they 
+        must be differentiated from the name of the entities.
+*/
+
+
 /* Corresponds to the CategoryResponse of the backend. */
 export interface Category {
   id: number;
