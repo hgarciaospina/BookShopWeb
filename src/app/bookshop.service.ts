@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Author, Category, Book } from './bookshop';
+import { Author, Category, Book, CategoryRequest } from './bookshop';
 
 @Injectable({
   providedIn: 'root'
@@ -18,20 +18,12 @@ export class BookshopService {
     return this.http.get<Category>(`${this.BASE_URL}/api/v1/category/${id}`);
   }
 
-  createCategory(category: Category) {
-    return this.http.post<Category>(`${this.BASE_URL}/api/v1/category`, 
-    {
-      name: category.name
-    });
+  createCategory(categoryRequest: CategoryRequest) {
+    return this.http.post<Category>(`${this.BASE_URL}/api/v1/category`, categoryRequest); 
   }
 
-
-
-  updateCategory(category: Category) {
-    return this.http.put<Category>(`${this.BASE_URL}/api/v1/category/${category.id}`, 
-    {
-      name: category.name
-    });
+  updateCategory(id: number, categoryRequest: CategoryRequest) {
+    return this.http.put<Category>(`${this.BASE_URL}/api/v1/category/${id}`, categoryRequest); 
   }
 
   deleteCategory(id: number){

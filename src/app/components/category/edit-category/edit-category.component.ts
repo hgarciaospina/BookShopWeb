@@ -14,7 +14,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Category } from '../../../bookshop';
+import { Category, CategoryRequest } from '../../../bookshop';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -66,9 +66,9 @@ export class EditCategoryComponent {
 
   save() {
     if(this.categoryForm.valid) {
-      this.bookshopService.updateCategory(<Category>{
+      this.bookshopService.updateCategory(parseInt(this.categoryForm.value.id!), <CategoryRequest>{
         id: parseInt(this.categoryForm.value!.id!),
-        name: this.categoryForm.value!.name
+        name: this.categoryForm.value!.name!
       }).subscribe({
         next: (data) => {
           this.toastr.warning('Category edited!!','Editing category');
@@ -78,6 +78,8 @@ export class EditCategoryComponent {
           this.toastr.error('Error editing category', 'Category cant\'t be edited ' + err.error.message);
         }
       });
+    } else {
+      this.toastr.error('Error editing category', 'The form is invalid');
     }
   }
   close() {
