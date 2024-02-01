@@ -1,3 +1,23 @@
+/*
+   Note: In order not to reload all the data by invoking the  loadDataSource()
+   method every time a new category is created, an assignment of the data object
+   to the dataSource is made so that it updates the dataSource with the new element. 
+
+   ** At the beginning of the data
+   if(data) {
+        this.dataSource = [
+          data,
+          ...this.dataSource
+        ];
+
+   
+   ** At the end of the data
+   if(data) {
+        this.dataSource = [
+          ...this.dataSource,
+          data
+        ];
+*/
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 
@@ -64,8 +84,8 @@ export class CategoryComponent {
         category.name
       },
       (error) => {
-        // Manejar el error si es necesario
-        console.error(error);
+        this.toastr.error('Error reading category by id', 
+        'The category could not be found. ' + error.error.message);
       }
     );
   }
@@ -81,7 +101,10 @@ export class CategoryComponent {
     ref.afterClosed()
     .subscribe((data) => {
       if(data) {
-        this.loadDataSource(); 
+        this.dataSource = [
+          data,
+          ...this.dataSource
+        ]; 
       }
     });
   }
@@ -104,7 +127,7 @@ export class CategoryComponent {
     const ref = this.dialog.open(ConfirmDialogComponent, {
       data: {
         title: 'Delete category',
-        message: 'Are you sure ti delete this category'
+        message: 'Are you sure to delete this category'
       }
     });
 
