@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Author, Category, Book, CategoryRequest } from './bookshop';
+import { Author, Category, Book, CategoryRequest, AuthorRequest } from './bookshop';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +10,7 @@ export class BookshopService {
 
   constructor(private http: HttpClient) { }
 
+  //Categories
   getAllCategories() {
     return this.http.get<Category[]>(`${this.BASE_URL}/api/v1/category`);
   }
@@ -30,6 +31,7 @@ export class BookshopService {
     return this.http.delete<any>(`${this.BASE_URL}/api/v1/category/${id}`);
   }
   
+  //Authors
   getAllAuthors() {
     return this.http.get<Author[]>(`${this.BASE_URL}/api/v1/author`);
   }
@@ -38,6 +40,19 @@ export class BookshopService {
     return this.http.get<Author>(`${this.BASE_URL}/api/v1/author/${id}`);
   }
 
+  createAuthor(authorRequest: AuthorRequest) {
+    return this.http.post<Author>(`${this.BASE_URL}/api/v1/author`, authorRequest); 
+  }
+
+  updateAuthor(id: number, authorRequest: AuthorRequest) {
+    return this.http.put<Author>(`${this.BASE_URL}/api/v1/author/${id}`, authorRequest); 
+  }
+
+  deleteAuthor(id: number){
+    return this.http.delete<any>(`${this.BASE_URL}/api/v1/author/${id}`);
+  }
+
+  //Books
   getAllBooks() {
     return this.http.get<Book[]>(`${this.BASE_URL}/api/v1/book`);
   }

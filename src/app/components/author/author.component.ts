@@ -9,6 +9,7 @@ import { BookshopService } from '../../bookshop.service';
 import { ToastrService } from 'ngx-toastr';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ViewAuthorComponent } from './view-author/view-author.component';
+import { ConfirmDialogComponent } from '../shared/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-author',
@@ -53,10 +54,36 @@ export class AuthorComponent {
          this.toastr.success('Information loaded', 'Loading authors');
         },
          error: (err) => {
-           this.toastr.error('Error Loading categories' , err.error.message);
+           this.toastr.error(err.error.message, 'Error Loading authors' );
       }
     })
   }
+
+  deleteElement(id: number) {
+    const ref = this.dialog.open(ConfirmDialogComponent, {
+      data: {
+        title: 'Delete author',
+        message: 'Are you sure to delete this author?'
+      }
+    });
+  
+    ref.afterClosed()
+      .subscribe((data) => {
+        if(data === 'Yes'){
+          this.bookshopService.deleteAuthor(id)
+          .subscribe({
+            next: (data) => {
+              this.loadDataSource();
+              this.toastr.warning('Deleting author','Author deleted!!')
+            },
+            error: (err) => {
+              this.toastr.error('Author cant\'t be deleted ' + err.error.message, 'Error deleting author');
+            }
+          });
+        }
+      });
+   }
+
 }
 
 export interface AuthorData {

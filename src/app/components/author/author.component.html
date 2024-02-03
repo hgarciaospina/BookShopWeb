@@ -31,7 +31,7 @@
                     <button mat-icon-button class="color-button-edit">
                       <mat-icon>edit</mat-icon>
                   </button>  
-                  <button mat-icon-button class="color-button-delete">
+                  <button mat-icon-button  (click)="deleteElement(author.id) "class="color-button-delete">
                     <mat-icon>delete</mat-icon>
                   </button>
                   <button mat-icon-button (click)="viewElement(author.id)" class="color-button-detail">

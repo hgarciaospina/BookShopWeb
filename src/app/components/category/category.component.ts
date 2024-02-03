@@ -126,7 +126,7 @@ export class CategoryComponent {
     const ref = this.dialog.open(ConfirmDialogComponent, {
       data: {
         title: 'Delete category',
-        message: 'Are you sure to delete this category'
+        message: 'Are you sure to delete this category?'
       }
     });
 

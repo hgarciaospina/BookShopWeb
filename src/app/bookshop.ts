@@ -24,8 +24,26 @@ export interface Author {
     biography: string;
 }
 
+export interface AuthorRequest {
+    firstName: string;
+    lastName:  string;
+    biography: string;
+}
+
 export interface Book {
     id: number;
+	title: string;
+	description: string ;
+	price: number;
+	isbn: string;
+	pages: number;
+    releaseDate: Date;
+	image: string;
+	category: Category;
+	author: Author ;
+}
+
+export interface BookRequest {
 	title: string;
 	description: string ;
 	price: number;
