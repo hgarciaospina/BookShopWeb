@@ -1,12 +1,14 @@
 <div class="container">
     <mat-card>
         <mat-card-header>
-          <mat-card-title>View Category</mat-card-title>
+          <mat-card-title>View Author</mat-card-title>
         </mat-card-header>
         <mat-divider></mat-divider>
         <mat-card-content>
             <p><b>Id</b>: {{ id }}</p>
-            <p><b>Name</b>: {{ name }} </p>
+            <p><b>Firstname</b>: {{ firstName }}</p>
+            <p><b>Lastname </b>: {{ lastName }} </p>
+            <p class="align-content"> {{ biography }} </p>
           </mat-card-content>
           <mat-card-actions align="end">
             <button mat-raised-button color="accent" (click)="closeDialog()">Close</button>

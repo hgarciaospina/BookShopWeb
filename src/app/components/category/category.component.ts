@@ -21,11 +21,11 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 
-import {MatCardModule} from '@angular/material/card';
-import {MatTableModule} from '@angular/material/table';
-import {MatButtonModule } from '@angular/material/button';
-import {MatIconModule } from '@angular/material/icon';
-import {MatDialog, MatDialogModule} from '@angular/material/dialog';
+import { MatCardModule } from '@angular/material/card';
+import { MatTableModule } from '@angular/material/table';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
 import { BookshopService } from '../../bookshop.service';
 
@@ -77,16 +77,16 @@ export class CategoryComponent {
         })      
     }
     
-  getCategoryById(id: number): void {
-    this.bookshopService.getCategoryById(id).subscribe(
-      (category: Category) => {
-        category.id,
-        category.name
-      },
-      (error) => {
-        this.toastr.error('Error reading category by id', 
-        'The category could not be found. ' + error.error.message);
-      }
+    getCategoryById(id: number): void {
+      this.bookshopService.getCategoryById(id).subscribe(
+        (category: Category) => {
+          category.id,
+          category.name
+        },
+        (error) => {
+          this.toastr.error('Error reading category by id', 
+          'The category could not be found. ' + error.error.message);
+        }
     );
   }
 
@@ -108,7 +108,6 @@ export class CategoryComponent {
       }
     });
   }
-
 
    editElement(category: CategoryData) {
     const ref = this.dialog.open(EditCategoryComponent, {
@@ -141,7 +140,7 @@ export class CategoryComponent {
               this.toastr.warning('Deleting category','Category deleted!!')
             },
             error: (err) => {
-              this.toastr.error('Error deleting category', 'Category cant\'t be deleted');
+              this.toastr.error('Error deleting category', 'Category cant\'t be deleted ' + err.error.message);
             }
           });
         }
