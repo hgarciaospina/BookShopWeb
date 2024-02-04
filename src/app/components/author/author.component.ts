@@ -11,6 +11,8 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ViewAuthorComponent } from './view-author/view-author.component';
 import { ConfirmDialogComponent } from '../shared/confirm-dialog/confirm-dialog.component';
 import { EditAuthorComponent } from './edit-author/edit-author.component';
+import { NewAuthorComponent } from './new-author/new-author.component';
+import { Author } from '../../bookshop';
 
 @Component({
   selector: 'app-author',
@@ -26,8 +28,49 @@ import { EditAuthorComponent } from './edit-author/edit-author.component';
   templateUrl: './author.component.html',
   styleUrl: './author.component.scss'
 })
-
 export class AuthorComponent {
+  displayedColumns: string[] = ['id', 'author', 'options'];
+  dataSource: AuthorData[] = [];
+
+
+  constructor(private bookshopService: BookshopService,
+    private dialog: MatDialog,
+    private toastr: ToastrService) {
+    this.loadDataSource();
+  }
+
+  private loadDataSource(){
+    this.bookshopService.getAllAuthors()
+     .subscribe({
+        next: (authors) => {
+         this.dataSource = authors.map(aut => <AuthorData> {
+          id: aut.id,
+          firstName: aut.firstName,
+          lastName: aut.lastName,  
+          biography: aut.biography 
+       });
+       this.toastr.success('Information loaded', 'Loading authors');
+      },
+       error: (err) => {
+         this.toastr.error(err.error.message, 'Error Loading authors' );
+     }
+   })
+  }
+  
+  getAuthorById(id: number): void {
+    this.bookshopService.getAuthorById(id).subscribe(
+      (author: Author) => {
+        author.id,
+        author.firstName,
+        author.lastName,
+        author.biography
+      },
+      (error) => {
+        this.toastr.error('The author could not be found. ' + error.error.message, 
+                          'Error reading author by id');
+      }
+    );
+  }
 
   viewElement(id: number){
     const ref = this.dialog.open(ViewAuthorComponent, {
@@ -35,31 +78,17 @@ export class AuthorComponent {
     });
   }
 
-  displayedColumns: string[] = ['id', 'author', 'options'];
-  dataSource: AuthorData[] = [];
-
-  constructor(private bookshopService: BookshopService,
-    private dialog: MatDialog,
-    private toastr: ToastrService) {
-    this.loadDataSource();
-    }
-    
-    private loadDataSource(){
-      this.bookshopService.getAllAuthors()
-       .subscribe({
-          next: (authors) => {
-           this.dataSource = authors.map(aut => <AuthorData> {
-            id: aut.id,
-            firstName: aut.firstName,
-            lastName: aut.lastName,  
-            biography: aut.biography 
-         });
-         this.toastr.success('Information loaded', 'Loading authors');
-        },
-         error: (err) => {
-           this.toastr.error(err.error.message, 'Error Loading authors' );
+  newAuthor(){
+    const ref = this.dialog.open(NewAuthorComponent);
+    ref.afterClosed()
+    .subscribe((data) => {
+      if(data) {
+        this.dataSource = [
+          data,
+          ...this.dataSource
+        ]; 
       }
-    })
+    });
   }
 
   editElement(author: AuthorData) {

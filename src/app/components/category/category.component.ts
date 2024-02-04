@@ -59,35 +59,35 @@ export class CategoryComponent {
     private dialog: MatDialog,
     private toastr: ToastrService) {
     this.loadDataSource();
-    }    
+  }    
 
-    private loadDataSource(){
-      this.bookshopService.getAllCategories()
-        .subscribe({
-          next: (categories) => {
-            this.dataSource = categories.map(cat => <CategoryData>{
-              id: cat.id,
-              name: cat.name
-            });
-           this.toastr.success('Information loaded', 'Loading categories'); 
-         },
-         error: (err) => {
-           this.toastr.error('Categories could not be loaded ' + err.error.message, 
-                          'Loading categories');
-         }
-        })      
-    }
-    
-    getCategoryById(id: number): void {
-      this.bookshopService.getCategoryById(id).subscribe(
-        (category: Category) => {
-          category.id,
-          category.name
+  private loadDataSource(){
+    this.bookshopService.getAllCategories()
+      .subscribe({
+        next: (categories) => {
+          this.dataSource = categories.map(cat => <CategoryData>{
+            id: cat.id,
+            name: cat.name
+          });
+          this.toastr.success('Information loaded', 'Loading categories'); 
         },
-        (error) => {
-          this.toastr.error('The category could not be found. ' + error.error.message, 
-                            'Error reading category by id');
+        error: (err) => {
+          this.toastr.error('Categories could not be loaded ' + err.error.message, 
+                        'Loading categories');
         }
+      })      
+  }
+    
+  getCategoryById(id: number): void {
+    this.bookshopService.getCategoryById(id).subscribe(
+      (category: Category) => {
+        category.id,
+        category.name
+      },
+      (error) => {
+        this.toastr.error('The category could not be found. ' + error.error.message, 
+                          'Error reading category by id');
+      }
     );
   }
 
@@ -123,7 +123,7 @@ export class CategoryComponent {
     });
   }
 
-   deleteElement(id: number) {
+  deleteElement(id: number) {
     const ref = this.dialog.open(ConfirmDialogComponent, {
       data: {
         title: 'Delete category',

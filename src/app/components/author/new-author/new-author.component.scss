@@ -1,0 +1,28 @@
+.container {
+    width: 650px;
+    height: 500px;
+    padding: 10px;
+}
+
+mat-card {
+    padding: 10px;
+    width: 100%;
+    height: 100%;
+}
+
+.mat-divider {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.mat-mdc-form-field {
+    display: block;
+}
+
+.button-action {
+    margin-right: 5px;
+}
+
+.text-justify {
+    text-align: justify;
+}

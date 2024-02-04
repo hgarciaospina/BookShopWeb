@@ -1,0 +1,33 @@
+<div class="container">
+    <mat-card>
+        <mat-card-header>
+          <mat-card-title>New Author</mat-card-title>
+        </mat-card-header>
+        <mat-divider></mat-divider>
+        <mat-card-content>
+            <form [formGroup]="authorForm">
+              <mat-form-field>
+                <mat-label>First Name</mat-label>
+                <input matInput formControlName="firstName">
+                @if(authorForm.get('firstName')?.invalid) {
+                  <mat-error>{{ getErrorMessage('firstName') }}</mat-error>
+                }
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Last Name</mat-label>
+                <input matInput formControlName="lastName">
+                @if(authorForm.get('lastName')?.invalid) {
+                  <mat-error>{{ getErrorMessage('lastName') }}</mat-error>
+                }
+              </mat-form-field>
+              <mat-form-field>
+                <textarea class="text-justify" rows="6" placeholder="Biography" matInput formControlName="biography"></textarea>
+              </mat-form-field>
+            </form>
+          </mat-card-content>
+          <mat-card-actions align="end">
+            <button class="button-action" mat-raised-button color="primary" (click)="save()">Save</button>
+            <button mat-raised-button color="accent" (click)="close()">Close</button>
+          </mat-card-actions>
+    </mat-card>
+</div>

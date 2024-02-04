@@ -5,7 +5,7 @@
     
     <mat-card-content>
         <div class="left">
-            <button mat-raised-button color="primary">New Author</button>
+            <button mat-raised-button color="primary" (click)="newAuthor()">New Author</button>
         </div>
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
