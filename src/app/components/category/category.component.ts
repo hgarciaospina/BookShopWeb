@@ -72,7 +72,8 @@ export class CategoryComponent {
            this.toastr.success('Information loaded', 'Loading categories'); 
          },
          error: (err) => {
-           this.toastr.error(err.error.message, 'Loading categories');
+           this.toastr.error('Categories could not be loaded ' + err.error.message, 
+                          'Loading categories');
          }
         })      
     }
@@ -84,8 +85,8 @@ export class CategoryComponent {
           category.name
         },
         (error) => {
-          this.toastr.error('Error reading category by id', 
-          'The category could not be found. ' + error.error.message);
+          this.toastr.error('The category could not be found. ' + error.error.message, 
+                            'Error reading category by id');
         }
     );
   }
@@ -140,7 +141,7 @@ export class CategoryComponent {
               this.toastr.warning('Deleting category','Category deleted!!')
             },
             error: (err) => {
-              this.toastr.error('Error deleting category', 'Category cant\'t be deleted ' + err.error.message);
+              this.toastr.error('Category cant\'t be deleted ' + err.error.message, 'Error deleting category');
             }
           });
         }

@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {MatListModule} from '@angular/material/list';
 import { RouterLink } from '@angular/router';
+
+import {MatListModule} from '@angular/material/list';
+import { MatIconModule } from '@angular/material/icon';
+
 
 
 @Component({
@@ -10,6 +13,7 @@ import { RouterLink } from '@angular/router';
   imports: [
     CommonModule,
     MatListModule,
+    MatIconModule,
     RouterLink
   ],
   templateUrl: './menubar.component.html',
