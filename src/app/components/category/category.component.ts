@@ -109,7 +109,7 @@ export class CategoryComponent {
     });
   }
 
-   editElement(category: CategoryData) {
+  editElement(category: CategoryData) {
     const ref = this.dialog.open(EditCategoryComponent, {
       data: category
     })
@@ -120,7 +120,7 @@ export class CategoryComponent {
         this.dataSource[index].name = data.name; 
       }
     });
-   }
+  }
 
    deleteElement(id: number) {
     const ref = this.dialog.open(ConfirmDialogComponent, {

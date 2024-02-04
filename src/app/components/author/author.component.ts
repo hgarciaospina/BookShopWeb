@@ -10,6 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ViewAuthorComponent } from './view-author/view-author.component';
 import { ConfirmDialogComponent } from '../shared/confirm-dialog/confirm-dialog.component';
+import { EditAuthorComponent } from './edit-author/edit-author.component';
 
 @Component({
   selector: 'app-author',
@@ -49,7 +50,9 @@ export class AuthorComponent {
           next: (authors) => {
            this.dataSource = authors.map(aut => <AuthorData> {
             id: aut.id,
-            author: `${aut.firstName}` + ' ' + `${aut.lastName}`  
+            firstName: aut.firstName,
+            lastName: aut.lastName,  
+            biography: aut.biography 
          });
          this.toastr.success('Information loaded', 'Loading authors');
         },
@@ -57,6 +60,21 @@ export class AuthorComponent {
            this.toastr.error(err.error.message, 'Error Loading authors' );
       }
     })
+  }
+
+  editElement(author: AuthorData) {
+    const ref = this.dialog.open(EditAuthorComponent, {
+      data: author
+    })
+    ref.afterClosed()
+    .subscribe((data) => {
+      if(data) {
+        const index = this.dataSource.findIndex(e => e.id == data.id);
+        this.dataSource[index].firstName = data.firstName;
+        this.dataSource[index].lastName = data.lastName;
+        this.dataSource[index].biography = data.biography; 
+      }
+    });
   }
 
   deleteElement(id: number) {
@@ -88,5 +106,7 @@ export class AuthorComponent {
 
 export interface AuthorData {
   id: number;
-  author: string;
+  firstName: string;
+  lastName: string;
+  biography: string;
 }

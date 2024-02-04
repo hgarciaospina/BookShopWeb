@@ -28,7 +28,6 @@ import { ToastrService } from 'ngx-toastr';
     MatFormFieldModule,
     ReactiveFormsModule,
     MatInputModule
-
   ],
   templateUrl: './edit-category.component.html',
   styleUrl: './edit-category.component.scss'
@@ -75,11 +74,11 @@ export class EditCategoryComponent {
           this.dialogRef.close(data);
         },
         error: (err) => { 
-          this.toastr.error('Error editing category', 'Category cant\'t be edited ' + err.error.message);
+          this.toastr.error('Category cant\'t be edited ' + err.error.message, 'Error editing category');
         }
       });
     } else {
-      this.toastr.error('Error editing category', 'The form is invalid');
+      this.toastr.error('The form is invalid', 'Error editing category');
     }
   }
   close() {
