@@ -32,7 +32,6 @@ export class AuthorComponent {
   displayedColumns: string[] = ['id', 'author', 'options'];
   dataSource: AuthorData[] = [];
 
-
   constructor(private bookshopService: BookshopService,
     private dialog: MatDialog,
     private toastr: ToastrService) {

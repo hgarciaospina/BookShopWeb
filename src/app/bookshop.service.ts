@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Author, Category, Book, CategoryRequest, AuthorRequest } from './bookshop';
+import { Author, Category, Book, CategoryRequest, AuthorRequest, BookRequest } from './bookshop';
 
 @Injectable({
   providedIn: 'root'
@@ -57,8 +57,20 @@ export class BookshopService {
     return this.http.get<Book[]>(`${this.BASE_URL}/api/v1/book`);
   }
 
-  geBookById(id: number) {
-    return this.http.get(`${this.BASE_URL}/api/v1/book/${id}`);
+  getBookById(id: number) {
+    return this.http.get<Book>(`${this.BASE_URL}/api/v1/book/${id}`);
+  }
+
+  createBook(bookRequest: BookRequest) {
+    return this.http.post<Book>(`${this.BASE_URL}/api/v1/book`, bookRequest); 
+  }
+
+  updateBook(id: number, bookRequest: BookRequest) {
+    return this.http.put<Book>(`${this.BASE_URL}/api/v1/book/${id}`, bookRequest); 
+  }
+
+  deleteBook(id: number){
+    return this.http.delete<any>(`${this.BASE_URL}/api/v1/book/${id}`);
   }
 
 }
