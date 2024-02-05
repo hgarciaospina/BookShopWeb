@@ -112,7 +112,6 @@ export class AuthorComponent {
         message: 'Are you sure to delete this author?'
       }
     });
-  
     ref.afterClosed()
       .subscribe((data) => {
         if(data === 'Yes'){

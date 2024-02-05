@@ -11,6 +11,7 @@ import { ViewBookComponent } from './view-book/view-book.component';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { Book, Category } from '../../bookshop';
+import { ConfirmDialogComponent } from '../shared/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-book',
@@ -76,18 +77,43 @@ export class BookComponent {
       });
   }
 
-
   viewElement(id: number){
     const ref = this.dialog.open(ViewBookComponent, {
     data: { id }
     })
  };
+
+ deleteElement(id: number) {
+  const ref = this.dialog.open(ConfirmDialogComponent, {
+    data: {
+      title: 'Delete Book',
+      message: 'Are you sure to delete this book?'
+    }
+  });
+  ref.afterClosed()
+    .subscribe((data) => {
+      if(data === 'Yes'){
+        this.bookshopService.deleteBook(id)
+        .subscribe({
+          next: (data) => {
+            this.loadDataSource();
+            this.toastr.warning('Book deleted!!', 'Deleting book');
+          },
+          error: (err) => {
+            this.toastr.error('Book cant\'t be deleted ' + err.error.message, 'Error deleting book');
+          }
+        });
+      }
+    });
+ }
+
+
 }
 
-  export interface BookData {
+export interface BookData {
     id: number;
     title: string;
     author: string;
     price: number;
     image: string;   
-  }
+}
