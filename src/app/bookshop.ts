@@ -51,6 +51,6 @@ export interface BookRequest {
 	pages: number;
     releaseDate: Date;
 	image: string;
-	category: Category;
-	author: Author ;
+	categoryId: number;
+	authorId: number;
 }

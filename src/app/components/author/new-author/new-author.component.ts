@@ -9,7 +9,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ToastrService } from 'ngx-toastr';
 import { BookshopService } from '../../../bookshop.service';
-import { Author, AuthorRequest } from '../../../bookshop';
+import { AuthorRequest } from '../../../bookshop';
 
 @Component({
   selector: 'app-new-author',
@@ -27,7 +27,6 @@ import { Author, AuthorRequest } from '../../../bookshop';
   styleUrl: './new-author.component.scss'
 })
 export class NewAuthorComponent {
-
   authorForm = new FormGroup({
     firstName: new FormControl('', [ 
       Validators.required,
@@ -44,7 +43,6 @@ export class NewAuthorComponent {
     public dialogRef: MatDialogRef<NewAuthorComponent>) {
     
   }
-
   getErrorMessage(control: string) {
     if(this.authorForm.get(control)?.hasError('required')) {
       return 'The field is required';

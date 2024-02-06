@@ -10,8 +10,9 @@ import { BookshopService } from '../../bookshop.service';
 import { ViewBookComponent } from './view-book/view-book.component';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
-import { Book, Category } from '../../bookshop';
+import { Book } from '../../bookshop';
 import { ConfirmDialogComponent } from '../shared/confirm-dialog/confirm-dialog.component';
+import { NewBookComponent } from './new-book/new-book.component';
 
 @Component({
   selector: 'app-book',
@@ -82,6 +83,19 @@ export class BookComponent {
     data: { id }
     })
  };
+
+ newBook(){
+  const ref = this.dialog.open(NewBookComponent);
+  ref.afterClosed()
+  .subscribe((data) => {
+    if(data) {
+      this.dataSource = [
+        data,
+        ...this.dataSource
+      ]; 
+    }
+  });
+}
 
  deleteElement(id: number) {
   const ref = this.dialog.open(ConfirmDialogComponent, {

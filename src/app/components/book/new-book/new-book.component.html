@@ -1,0 +1,61 @@
+<div class="container">
+    <mat-card>
+        <mat-card-header>
+          <mat-card-title>New Book</mat-card-title>
+        </mat-card-header>
+        <mat-divider></mat-divider>
+        <mat-card-content class="scrollable-content">
+            <form [formGroup]="bookForm">
+              <mat-form-field>
+                <mat-label>Title</mat-label>
+                <input matInput formControlName="title">
+                @if(bookForm.get('title')?.invalid) {
+                  <mat-error>{{ getErrorMessage('title') }}</mat-error>
+                }
+              </mat-form-field>
+              <mat-form-field>
+                <textarea class="text-justify" rows="6" placeholder="Description" matInput formControlName="description"></textarea>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Price</mat-label>
+                <input matInput formControlName="price">
+                @if(bookForm.get('price')?.invalid) {
+                  <mat-error>{{ getErrorMessage('price') }}</mat-error>
+                }
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Isbn</mat-label>
+                <input matInput formControlName="isbn">
+                @if(bookForm.get('isbn')?.invalid) {
+                  <mat-error>{{ getErrorMessage('isbn') }}</mat-error>
+                }
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Pages</mat-label>
+                <input matInput formControlName="pages">
+                @if(bookForm.get('pages')?.invalid) {
+                  <mat-error>{{ getErrorMessage('pages') }}</mat-error>
+                }
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Choose a release date</mat-label>
+                <input matInput formControlName="releaseDate" [matDatepicker]="releaseDate">
+                @if(bookForm.get('releaseDate')?.invalid) {
+                    <mat-error>{{ getErrorMessage('releaseDate') }}</mat-error>
+                  }
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="releaseDate"></mat-datepicker-toggle>
+                <mat-datepicker #releaseDate ></mat-datepicker>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Image</mat-label>
+                <input matInput formControlName="image">
+              </mat-form-field>
+            </form>
+          </mat-card-content>
+          <mat-card-actions align="end">
+            <button class="button-action" mat-raised-button color="primary" (click)="save()">Save</button>
+            <button mat-raised-button color="accent" (click)="close()">Close</button>
+          </mat-card-actions>
+    </mat-card>
+</div>
