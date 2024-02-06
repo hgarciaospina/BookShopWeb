@@ -6,7 +6,7 @@
         <mat-divider></mat-divider>
         <mat-card-content>
             <form [formGroup]="categoryForm">
-              <mat-form-field appearance="outline">
+              <mat-form-field class="field-id" appearance="outline">
                 <mat-label>Id</mat-label>
                 <input matInput formControlName="id" [readonly]="true">
                 @if(categoryForm.get('id')?.invalid) {

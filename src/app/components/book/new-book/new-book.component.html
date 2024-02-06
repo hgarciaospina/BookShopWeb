@@ -6,7 +6,7 @@
         <mat-divider></mat-divider>
         <mat-card-content class="scrollable-content">
             <form [formGroup]="bookForm">
-              <mat-form-field appearance="outline">
+              <mat-form-field class="field-title" appearance="outline">
                 <mat-label>Title</mat-label>
                 <input matInput formControlName="title">
                 @if(bookForm.get('title')?.invalid) {
