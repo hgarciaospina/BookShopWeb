@@ -6,21 +6,21 @@
         <mat-divider></mat-divider>
         <mat-card-content>
             <form [formGroup]="authorForm">
-              <mat-form-field>
+              <mat-form-field appearance="outline">
                 <mat-label>First Name</mat-label>
                 <input matInput formControlName="firstName">
                 @if(authorForm.get('firstName')?.invalid) {
                   <mat-error>{{ getErrorMessage('firstName') }}</mat-error>
                 }
               </mat-form-field>
-              <mat-form-field>
+              <mat-form-field appearance="outline">
                 <mat-label>Last Name</mat-label>
                 <input matInput formControlName="lastName">
                 @if(authorForm.get('lastName')?.invalid) {
                   <mat-error>{{ getErrorMessage('lastName') }}</mat-error>
                 }
               </mat-form-field>
-              <mat-form-field>
+              <mat-form-field appearance="outline">
                 <textarea class="text-justify" rows="6" placeholder="Biography" matInput formControlName="biography"></textarea>
               </mat-form-field>
             </form>

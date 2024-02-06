@@ -55,7 +55,7 @@ export class AuthorComponent {
      }
    })
   }
-  
+
   getAuthorById(id: number): void {
     this.bookshopService.getAuthorById(id).subscribe(
       (author: Author) => {

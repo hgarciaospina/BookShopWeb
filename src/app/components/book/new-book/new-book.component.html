@@ -6,38 +6,38 @@
         <mat-divider></mat-divider>
         <mat-card-content class="scrollable-content">
             <form [formGroup]="bookForm">
-              <mat-form-field>
+              <mat-form-field appearance="outline">
                 <mat-label>Title</mat-label>
                 <input matInput formControlName="title">
                 @if(bookForm.get('title')?.invalid) {
                   <mat-error>{{ getErrorMessage('title') }}</mat-error>
                 }
               </mat-form-field>
-              <mat-form-field>
+              <mat-form-field appearance="outline">
                 <textarea class="text-justify" rows="6" placeholder="Description" matInput formControlName="description"></textarea>
               </mat-form-field>
-              <mat-form-field>
+              <mat-form-field appearance="outline">
                 <mat-label>Price</mat-label>
                 <input matInput formControlName="price">
                 @if(bookForm.get('price')?.invalid) {
                   <mat-error>{{ getErrorMessage('price') }}</mat-error>
                 }
               </mat-form-field>
-              <mat-form-field>
+              <mat-form-field appearance="outline">
                 <mat-label>Isbn</mat-label>
                 <input matInput formControlName="isbn">
                 @if(bookForm.get('isbn')?.invalid) {
                   <mat-error>{{ getErrorMessage('isbn') }}</mat-error>
                 }
               </mat-form-field>
-              <mat-form-field>
+              <mat-form-field appearance="outline">
                 <mat-label>Pages</mat-label>
                 <input matInput formControlName="pages">
                 @if(bookForm.get('pages')?.invalid) {
                   <mat-error>{{ getErrorMessage('pages') }}</mat-error>
                 }
               </mat-form-field>
-              <mat-form-field>
+              <mat-form-field appearance="outline">
                 <mat-label>Choose a release date</mat-label>
                 <input matInput formControlName="releaseDate" [matDatepicker]="releaseDate">
                 @if(bookForm.get('releaseDate')?.invalid) {
@@ -47,7 +47,7 @@
                 <mat-datepicker-toggle matIconSuffix [for]="releaseDate"></mat-datepicker-toggle>
                 <mat-datepicker #releaseDate ></mat-datepicker>
               </mat-form-field>
-              <mat-form-field>
+              <mat-form-field appearance="outline">
                 <mat-label>Image</mat-label>
                 <input matInput formControlName="image">
               </mat-form-field>

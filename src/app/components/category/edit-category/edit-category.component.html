@@ -6,14 +6,14 @@
         <mat-divider></mat-divider>
         <mat-card-content>
             <form [formGroup]="categoryForm">
-              <mat-form-field>
+              <mat-form-field appearance="outline">
                 <mat-label>Id</mat-label>
                 <input matInput formControlName="id" [readonly]="true">
                 @if(categoryForm.get('id')?.invalid) {
                   <mat-error>{{ getErrorMessage('id') }}</mat-error>
                 }
               </mat-form-field>
-              <mat-form-field>
+              <mat-form-field appearance="outline">
                 <mat-label>Name</mat-label>
                 <input matInput formControlName="name">
                 @if(categoryForm.get('name')?.invalid) {
