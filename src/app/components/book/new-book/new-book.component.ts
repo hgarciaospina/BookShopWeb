@@ -34,38 +34,37 @@ import { MatSelectModule } from '@angular/material/select';
 })
 export class NewBookComponent {
   bookForm = new FormGroup({
-    title: new FormControl('', [ 
+    title: new FormControl<string>('', [ 
       Validators.required,
       Validators.minLength(5),
       Validators.maxLength(150) 
     ]),
-    description: new FormControl('', [ 
+    description: new FormControl<string>('', [ 
       Validators.maxLength(4000)
     ]),
-    price: new FormControl('',[
+    price: new FormControl<number>(0.00,[
       Validators.required,
       Validators.min(10.00)
     ]),
-    isbn: new FormControl('',[
+    isbn: new FormControl<string>('',[
       Validators.required,
       Validators.minLength(13),
       Validators.maxLength(13)
     ]),
-    pages: new FormControl('',[
+    pages: new FormControl<number>(0,[
       Validators.required,
       Validators.min(50)
     ]),
-    releaseDate: new FormControl('',[
+    releaseDate: new FormControl<Date>(new Date(),[
       Validators.required,
     ]),
-    image: new FormControl('',[
+    image: new FormControl<string>('',[
     ]), 
-    categoryId: new FormControl('',[
+    categoryId: new FormControl<number>(0,[
       Validators.required,]),
-    authorId: new FormControl('',[
+    authorId: new FormControl<number>(0,[
       Validators.required,]),    
   });
-
   constructor(
     private bookshopService: BookshopService,
     private toastr: ToastrService,
@@ -96,7 +95,7 @@ export class NewBookComponent {
 
   save() {
     if(this.bookForm.valid) {
-      this.bookshopService.createBook(<BookRequest><unknown>{
+      this.bookshopService.createBook(<BookRequest>{
         title: this.bookForm.value!.title!,
         description: this.bookForm.value.description,
         price: this.bookForm.value!.price!,
