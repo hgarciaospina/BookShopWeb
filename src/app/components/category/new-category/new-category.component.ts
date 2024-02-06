@@ -1,11 +1,9 @@
-import { Component, Inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { MAT_DIALOG_DATA, MatDialogRef  } from '@angular/material/dialog';
+import { MatDialogRef  } from '@angular/material/dialog';
 
 import { BookshopService } from '../../../bookshop.service';
-
-import { CategoryData } from '../category.component';
 
 
 import { MatButtonModule } from '@angular/material/button';

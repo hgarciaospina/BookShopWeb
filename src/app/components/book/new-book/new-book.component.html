@@ -42,7 +42,7 @@
                 <input matInput formControlName="releaseDate" [matDatepicker]="releaseDate">
                 @if(bookForm.get('releaseDate')?.invalid) {
                     <mat-error>{{ getErrorMessage('releaseDate') }}</mat-error>
-                  }
+                }
                 <mat-hint>MM/DD/YYYY</mat-hint>
                 <mat-datepicker-toggle matIconSuffix [for]="releaseDate"></mat-datepicker-toggle>
                 <mat-datepicker #releaseDate ></mat-datepicker>
@@ -50,6 +50,22 @@
               <mat-form-field appearance="outline">
                 <mat-label>Image</mat-label>
                 <input matInput formControlName="image">
+              </mat-form-field>
+              <mat-form-field appearance="outline" class="tw-w-full">
+                <mat-select placeholder="Select an author...." name="authors" formControlName="authorId">
+                  <mat-option *ngFor="let auth of authorsSelect" [value]="auth.id">{{auth.firstName}} {{auth.lastName}}</mat-option>
+                </mat-select>
+                @if(bookForm.get('authorId')?.invalid) {
+                  <mat-error>{{ getErrorMessage('authorId') }}</mat-error>
+              }
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-select placeholder="Select a category...." name="categories" formControlName="categoryId">
+                  <mat-option *ngFor="let cat of categoriesSelect" [value]="cat.id">{{ cat.name }}</mat-option>
+                </mat-select>
+                @if(bookForm.get('categoryId')?.invalid) {
+                  <mat-error>{{ getErrorMessage('categoryId') }}</mat-error>
+              }
               </mat-form-field>
             </form>
           </mat-card-content>

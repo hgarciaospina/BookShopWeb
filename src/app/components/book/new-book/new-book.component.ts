@@ -13,6 +13,8 @@ import { BookshopService } from '../../../bookshop.service';
 import { BookRequest } from '../../../bookshop';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
+import { AuthorData } from '../../author/author.component';
+import { CategoryData } from '../../category/category.component';
 
 @Component({
   selector: 'app-new-book',
@@ -33,6 +35,8 @@ import { MatSelectModule } from '@angular/material/select';
   styleUrl: './new-book.component.scss'
 })
 export class NewBookComponent {
+  authorsSelect: AuthorData[] = [];
+  categoriesSelect: CategoryData[] = [];
   bookForm = new FormGroup({
     title: new FormControl<string>('', [ 
       Validators.required,
@@ -69,7 +73,8 @@ export class NewBookComponent {
     private bookshopService: BookshopService,
     private toastr: ToastrService,
     public dialogRef: MatDialogRef<NewBookComponent>) {
-    
+      this.loadDataAuthorsSelect();
+      this.loadDataCategoriesSelect();
   }
   getErrorMessage(control: string) {
     const formControl = this.bookForm.get(control);
@@ -91,6 +96,39 @@ export class NewBookComponent {
     }
 
     return '';
+  }
+
+  private loadDataAuthorsSelect(){
+    this.bookshopService.getAllAuthors()
+     .subscribe({
+        next: (authors) => {
+         this.authorsSelect = authors.map(aut => <AuthorData> {
+          id: aut.id,
+          firstName: aut.firstName,
+          lastName: aut.lastName  
+       });
+       this.toastr.success('Information loaded', 'Loading authors');
+      },
+       error: (err) => {
+         this.toastr.error(err.error.message, 'Error Loading authors' );
+     }
+   })
+  }
+
+  private loadDataCategoriesSelect(){
+    this.bookshopService.getAllCategories()
+     .subscribe({
+        next: (categories) => {
+         this.categoriesSelect = categories.map(cat => <CategoryData> {
+          id: cat.id,
+          name: cat.name  
+       });
+       this.toastr.success('Information loaded', 'Loading categories');
+      },
+       error: (err) => {
+         this.toastr.error(err.error.message, 'Error Loading categories' );
+     }
+   })
   }
 
   save() {
