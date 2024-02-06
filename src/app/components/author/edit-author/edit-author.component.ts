@@ -34,13 +34,13 @@ export class EditAuthorComponent {
   
   authorForm = new FormGroup({
     id: new FormControl('', Validators.required),
-    firstName: new FormControl('', [ 
+    firstName: new FormControl<string>('', [ 
       Validators.required,
       Validators.minLength(5)]),
-    lastName: new FormControl('', [ 
+    lastName: new FormControl<string>('', [ 
       Validators.required,
       Validators.minLength(5)]),
-    biography: new FormControl('',[])    
+    biography: new FormControl<string>('',[])    
   });
 
   constructor(

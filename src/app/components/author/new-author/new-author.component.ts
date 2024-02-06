@@ -28,13 +28,13 @@ import { AuthorRequest } from '../../../bookshop';
 })
 export class NewAuthorComponent {
   authorForm = new FormGroup({
-    firstName: new FormControl('', [ 
+    firstName: new FormControl<string>('', [ 
       Validators.required,
       Validators.minLength(5)]),
-    lastName: new FormControl('', [ 
+    lastName: new FormControl<string>('', [ 
       Validators.required,
       Validators.minLength(5)]),
-    biography: new FormControl('',[])    
+    biography: new FormControl<string>('',[])    
   });
 
   constructor(

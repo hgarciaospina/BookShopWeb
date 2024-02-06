@@ -35,7 +35,7 @@ import { ToastrService } from 'ngx-toastr';
 export class NewCategoryComponent {
 
   categoryForm = new FormGroup({
-    name: new FormControl('', [ 
+    name: new FormControl<string>('', [ 
       Validators.required,
       Validators.minLength(5)]),
   });

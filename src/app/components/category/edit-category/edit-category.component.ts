@@ -36,7 +36,7 @@ export class EditCategoryComponent {
 
   categoryForm = new FormGroup({
     id: new FormControl('', Validators.required),
-    name: new FormControl('', [ 
+    name: new FormControl<string>('', [ 
       Validators.required,
       Validators.minLength(5)]),
   });
