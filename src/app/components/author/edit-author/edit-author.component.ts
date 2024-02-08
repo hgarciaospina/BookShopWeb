@@ -9,7 +9,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ToastrService } from 'ngx-toastr';
 
-import { Author, AuthorRequest } from '../../../bookshop';
+import { AuthorRequest } from '../../../bookshop';
 
 import { BookshopService } from '../../../bookshop.service';
 
@@ -33,7 +33,7 @@ import { AuthorData } from '../author.component';
 export class EditAuthorComponent {
   
   authorForm = new FormGroup({
-    id: new FormControl('', Validators.required),
+    id: new FormControl<string>('', Validators.required),
     firstName: new FormControl<string>('', [ 
       Validators.required,
       Validators.minLength(5)]),
