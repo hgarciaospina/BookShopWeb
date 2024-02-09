@@ -1,0 +1,37 @@
+.container {
+    width: 650px;
+    height: auto;
+    padding: 10px;
+}
+
+mat-card {
+    padding: 10px;
+    width: 100%;
+    height: auto;
+}
+
+.mat-divider {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.mat-mdc-form-field {
+    display: block;
+}
+
+.button-action {
+    margin-right: 5px;
+}
+
+.text-justify {
+    text-align: justify;
+}
+
+.scrollable-content {
+    overflow-y: auto;
+    max-height: 500px; 
+}
+
+.field-title {
+    margin-top: 10px;
+}

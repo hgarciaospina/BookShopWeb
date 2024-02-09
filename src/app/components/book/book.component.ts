@@ -10,9 +10,10 @@ import { BookshopService } from '../../bookshop.service';
 import { ViewBookComponent } from './view-book/view-book.component';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
-import { Author, Book, Category } from '../../bookshop';
+import { BookRequest, Book, Author, Category } from '../../bookshop';
 import { ConfirmDialogComponent } from '../shared/confirm-dialog/confirm-dialog.component';
 import { NewBookComponent } from './new-book/new-book.component';
+import { EditBookComponent } from './edit-book/edit-book.component';
 
 @Component({
   selector: 'app-book',
@@ -38,7 +39,6 @@ export class BookComponent {
     'options',
   ];
   dataSource: BookData[] = [];
-
   constructor(
     private bookshopService: BookshopService,
     private dialog: MatDialog,
@@ -51,14 +51,13 @@ export class BookComponent {
     this.bookshopService.getAllBooks().subscribe({
       next: (books) => {
         this.dataSource = books.map(
-          (boo) =>
-            <BookData>{
+          (boo) => <BookData>({
               id: boo.id,
               title: boo.title,
-              author: `${boo.author.firstName}` + ' ' + `${boo.author.lastName}`, 
+              author: boo.author,
               price: boo.price,
               image: boo.image,
-            }
+            })
         );
         this.toastr.success('Information loaded', 'Loading books');
       },
@@ -79,9 +78,7 @@ export class BookComponent {
           book.pages,
           book.releaseDate;
         book.image;
-        book.category.name, 
-        book.author.firstName, 
-        book.author.lastName;
+        book.category.name, book.author.firstName, book.author.lastName;
       },
       (error) => {
         this.toastr.error(
@@ -107,8 +104,7 @@ export class BookComponent {
     });
   }
 
-  /*
-  editElement(book: BookData) {
+  editElement(book: BookRequest) {
     const ref = this.dialog.open(EditBookComponent, {
       data: book,
     });
@@ -122,12 +118,11 @@ export class BookComponent {
         this.dataSource[index].pages = data.pages;
         this.dataSource[index].releaseDate = data.releaseDate;
         this.dataSource[index].image = data.image;
-        this.dataSource[index].categoryId = data.category.id;
-        this.dataSource[index].authorId = data.author.id;
+        this.dataSource[index].category.id = data.category.id;
+        this.dataSource[index].author.id = data.author.id;
       }
     });
   }
-*/
 
   deleteElement(id: number) {
     const ref = this.dialog.open(ConfirmDialogComponent, {
@@ -158,7 +153,12 @@ export class BookComponent {
 export interface BookData {
   id: number;
   title: string;
-  author: string;
+  description: string;
   price: number;
-  image: string;   
+  isbn: string;
+  pages: number;
+  releaseDate: Date;
+  image: string;
+  category: Category;
+  author: Author;
 }

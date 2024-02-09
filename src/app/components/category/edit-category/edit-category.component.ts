@@ -14,7 +14,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Category, CategoryRequest } from '../../../bookshop';
+import { CategoryRequest } from '../../../bookshop';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
