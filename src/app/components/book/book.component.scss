@@ -28,6 +28,21 @@ table {
     text-align: center;
 }
 
+.center-items {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.align-label-price {
+    padding-left: 580px;
+}
+
+.align-right {
+    text-align: right;
+    padding-right: 100px;
+}
+
 img {
     height: 50px;
     width: 50px;

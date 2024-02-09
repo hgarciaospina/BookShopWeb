@@ -32,14 +32,13 @@
 
                <!-- Price Column -->
              <ng-container matColumnDef="price">
-                <th mat-header-cell *matHeaderCellDef> Price </th>
-                <td mat-cell *matCellDef="let book"> {{book.price}}</td>
+                <th class="align-label-price" mat-header-cell *matHeaderCellDef> Price </th>
+                <td mat-cell *matCellDef="let book"   class="align-right"> {{book.price | currency }}</td>
               </ng-container>
 
             <!-- Image Column -->
-            <ng-container matColumnDef="image">
-                <th mat-header-cell *matHeaderCellDef> Image </th>
-                
+            <ng-container class="center-items" matColumnDef="image">
+                <th mat-header-cell *matHeaderCellDef>Image</th>
                 <td mat-cell *matCellDef="let book"> <img src="{{book.image}}" alt="Book Image"></td>
               </ng-container>
 

@@ -142,7 +142,7 @@ export class NewBookComponent {
         releaseDate: this.bookForm.value!.releaseDate!,
         image: this.bookForm.value.image,
         categoryId: this.bookForm.value!.categoryId!,
-        authorId: this.bookForm.value!.authorId
+        authorId: this.bookForm.value!.authorId!
       }).subscribe({
         next: (data) => {
           this.toastr.success('Book created!!','Creating book');

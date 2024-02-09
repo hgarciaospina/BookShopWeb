@@ -104,16 +104,17 @@ export class EditBookComponent {
   }
 
   patchFormData(data: BookData) {
-    this.bookForm.get('id')?.patchValue(this.data.id);
-    this.bookForm.get('title')?.patchValue(this.data.title);
-    this.bookForm.get('description')?.patchValue(this.data.description);
-    this.bookForm.get('price')?.patchValue(this.data.price);
-    this.bookForm.get('isbn')?.patchValue(this.data.isbn);
-    this.bookForm.get('pages')?.patchValue(this.data.pages);
-    this.bookForm.get('releaseDate')?.patchValue(this.data.releaseDate);
-    this.bookForm.get('image')?.patchValue(this.data.image);
-    this.bookForm.get('categoryId')?.patchValue(this.data.category.id);
-    this.bookForm.get('authorId')?.patchValue(this.data.author.id);
+    this.bookForm.patchValue({
+      title: this.data.title,
+      description: this.data.description, 
+      price: this.data.price,
+      isbn: this.data.isbn,
+      pages: this.data.pages,
+      releaseDate: this.data.releaseDate,
+      image: this.data.image,
+      categoryId: this.data.category.id, 
+      authorId: this.data.author.id
+    });
   }
 
   loadDataAuthorsSelect() {
@@ -156,7 +157,6 @@ export class EditBookComponent {
   save() {
     if (this.bookForm.valid) {
       this.bookshopService.updateBook(this.bookForm.value.id!, <BookRequest>{
-          id: this.bookForm.value!.id!,
           title: this.bookForm.value!.title!,
           description: this.bookForm.value.description,
           price: this.bookForm.value!.price!,
