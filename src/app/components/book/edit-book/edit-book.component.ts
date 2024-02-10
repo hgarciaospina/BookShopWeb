@@ -70,15 +70,29 @@ export class EditBookComponent {
     categoryId: new FormControl<number>(0, [Validators.required]),
     authorId: new FormControl<number>(0, [Validators.required]),
   });
+
   constructor(
     private bookshopService: BookshopService,
     private toastr: ToastrService,
     public dialogRef: MatDialogRef<EditBookComponent>,
-    @Inject(MAT_DIALOG_DATA) private data: BookData
-  ) {
+    @Inject(MAT_DIALOG_DATA) private data: BookData) {
+      this.bookForm.get('id')?.setValue(this.data.id);
+      this.bookForm.patchValue({
+        title: this.data.title,
+        description: this.data.description, 
+        price: this.data.price,
+        isbn: this.data.isbn,
+        pages: this.data.pages,
+        releaseDate: this.data.releaseDate,
+        image: this.data.image,
+        authorId: this.data.author.id,
+        categoryId: this.data.category.id,
+      }); 
+  }
+
+  ngOnInit(): void {
     this.loadDataAuthorsSelect();
     this.loadDataCategoriesSelect();
-    this.patchFormData(data);
   }
 
   getErrorMessage(control: string) {
@@ -101,20 +115,6 @@ export class EditBookComponent {
     }
 
     return '';
-  }
-
-  patchFormData(data: BookData) {
-    this.bookForm.patchValue({
-      title: this.data.title,
-      description: this.data.description, 
-      price: this.data.price,
-      isbn: this.data.isbn,
-      pages: this.data.pages,
-      releaseDate: this.data.releaseDate,
-      image: this.data.image,
-      categoryId: this.data.category.id, 
-      authorId: this.data.author.id
-    });
   }
 
   loadDataAuthorsSelect() {
@@ -157,6 +157,7 @@ export class EditBookComponent {
   save() {
     if (this.bookForm.valid) {
       this.bookshopService.updateBook(this.bookForm.value.id!, <BookRequest>{
+          id: this.bookForm.value!.id!,
           title: this.bookForm.value!.title!,
           description: this.bookForm.value.description,
           price: this.bookForm.value!.price!,

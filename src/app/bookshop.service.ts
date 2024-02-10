@@ -72,5 +72,4 @@ export class BookshopService {
   deleteBook(id: number){
     return this.http.delete<any>(`${this.BASE_URL}/api/v1/book/${id}`);
   }
-
 }

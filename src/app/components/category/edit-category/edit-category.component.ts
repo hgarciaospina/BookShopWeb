@@ -33,7 +33,6 @@ import { ToastrService } from 'ngx-toastr';
   styleUrl: './edit-category.component.scss'
 })
 export class EditCategoryComponent {
-
   categoryForm = new FormGroup({
     id: new FormControl('', Validators.required),
     name: new FormControl<string>('', [ 
@@ -43,10 +42,9 @@ export class EditCategoryComponent {
   
   constructor(
     private bookshopService: BookshopService,
+    private toastr: ToastrService,
     public dialogRef: MatDialogRef<EditCategoryComponent>,
-    @Inject(MAT_DIALOG_DATA) private data: CategoryData,
-    private toastr: ToastrService) {
-    
+    @Inject(MAT_DIALOG_DATA) private data: CategoryData) {
       this.categoryForm.get('id')?.setValue(this.data.id + '');
       this.categoryForm.get('name')?.setValue(this.data.name);
   }

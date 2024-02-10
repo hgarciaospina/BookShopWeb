@@ -54,9 +54,14 @@ export class BookComponent {
           (boo) => <BookData>({
               id: boo.id,
               title: boo.title,
-              author: boo.author,
+              description: boo.description,
               price: boo.price,
+              isbn: boo.isbn,
+              pages: boo.pages,
+              releaseDate: boo.releaseDate,
               image: boo.image,
+              author: boo.author,
+              category: boo.category
             })
         );
         this.toastr.success('Information loaded', 'Loading books');
@@ -90,6 +95,7 @@ export class BookComponent {
   }
 
   viewElement(id: number) {
+    console.log(id + 'Ingresó...');
     const ref = this.dialog.open(ViewBookComponent, {
       data: { id },
     });
@@ -104,9 +110,10 @@ export class BookComponent {
     });
   }
 
-  editElement(book: BookRequest) {
+  editElement(bookRequest: BookRequest) {
+    console.log(bookRequest);
     const ref = this.dialog.open(EditBookComponent, {
-      data: book,
+      data: bookRequest,
     });
     ref.afterClosed().subscribe((data) => {
       if (data) {

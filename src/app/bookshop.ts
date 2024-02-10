@@ -33,7 +33,7 @@ export interface AuthorRequest {
 export interface Book {
     id: number;
 	title: string;
-	description: string ;
+	description: string;
 	price: number;
 	isbn: string;
 	pages: number;

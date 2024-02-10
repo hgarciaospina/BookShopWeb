@@ -35,6 +35,11 @@ import { CategoryData } from '../../category/category.component';
   styleUrl: './new-book.component.scss'
 })
 export class NewBookComponent {
+  ngOnInit(): void {
+    this.loadDataAuthorsSelect();
+    this.loadDataCategoriesSelect();
+  }
+
   authorsSelect: AuthorData[] = [];
   categoriesSelect: CategoryData[] = [];
   bookForm = new FormGroup({
@@ -73,8 +78,8 @@ export class NewBookComponent {
     private bookshopService: BookshopService,
     private toastr: ToastrService,
     public dialogRef: MatDialogRef<NewBookComponent>) {
-      this.loadDataAuthorsSelect();
-      this.loadDataCategoriesSelect();
+     // this.loadDataAuthorsSelect();
+    //  this.loadDataCategoriesSelect();
   }
   getErrorMessage(control: string) {
     const formControl = this.bookForm.get(control);

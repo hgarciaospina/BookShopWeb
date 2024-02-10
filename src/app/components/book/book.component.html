@@ -32,8 +32,8 @@
 
                <!-- Price Column -->
              <ng-container matColumnDef="price">
-                <th class="align-label-price" mat-header-cell *matHeaderCellDef> Price </th>
-                <td mat-cell *matCellDef="let book"   class="align-right"> {{book.price | currency }}</td>
+                <th mat-header-cell *matHeaderCellDef> Price </th>
+                <td mat-cell *matCellDef="let book" class="align-right"> {{book.price | currency }}</td>
               </ng-container>
 
             <!-- Image Column -->
@@ -46,7 +46,7 @@
              <ng-container matColumnDef="options">
                 <th mat-header-cell *matHeaderCellDef class="options"> Options </th>
                 <td mat-cell *matCellDef="let book" class="options">
-                    <button mat-icon-button (click)="editElement(book.id)" class="color-button-edit">
+                    <button mat-icon-button (click)="editElement(book)" class="color-button-edit">
                       <mat-icon>edit</mat-icon>
                   </button>  
                   <button mat-icon-button (click)="deleteElement(book.id)" class="color-button-delete">

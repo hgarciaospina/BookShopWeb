@@ -31,7 +31,6 @@ import { AuthorData } from '../author.component';
   styleUrl: './edit-author.component.scss'
 })
 export class EditAuthorComponent {
-  
   authorForm = new FormGroup({
     id: new FormControl<string>('', Validators.required),
     firstName: new FormControl<string>('', [ 

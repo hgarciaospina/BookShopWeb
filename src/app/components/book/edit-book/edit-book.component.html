@@ -21,7 +21,7 @@
                     }
                 </mat-form-field>
                 <mat-form-field appearance="outline">
-                    <textarea class="text-justify" rows="6" placeholder="Description" matInput
+                    <textarea matInput class="text-justify" rows="6" placeholder="Description" 
                         formControlName="description"></textarea>
                 </mat-form-field>
                 <mat-form-field appearance="outline">
@@ -59,7 +59,7 @@
                     <mat-label>Image</mat-label>
                     <input matInput formControlName="image">
                 </mat-form-field>
-                <mat-form-field appearance="outline" class="tw-w-full">
+                <mat-form-field appearance="outline">
                     <mat-select placeholder="Select an author...." name="authors" formControlName="authorId">
                         <mat-option *ngFor="let auth of authorsSelect" [value]="auth.id">{{auth.firstName}}
                             {{auth.lastName}}</mat-option>
